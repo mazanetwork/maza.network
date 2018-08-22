@@ -21,7 +21,7 @@ env:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
   
 after_success:
-  - CID=$(docker run -d -v ${TRAVIS_BUILD_DIR}:/data/ipfs ipfs/go-ipfs)
+  - CID=$(docker run -d -v ${TRAVIS_BUILD_DIR}:/data/staging ipfs/go-ipfs)
  
 deploy:
   # deploy develop to the staging environment
