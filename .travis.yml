@@ -24,5 +24,13 @@ after_success:
   - CID=$(docker run -d -v ${TRAVIS_BUILD_DIR}:/data/ipfs ipfs/go-ipfs)
   - docker stop $CID
 deploy:
-  - echo "deploy to ipfs here" 
- 
+  # deploy develop to the staging environment
+  - provider: script
+    script: bash script/ci-deploy.sh dev
+    on:
+      branch: develop
+  # deploy master to production
+  - provider: script
+    script: bash scripts/deploy.sh prod
+    on:
+      branch: master
