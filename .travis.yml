@@ -26,12 +26,12 @@ after_success:
 deploy:
   # deploy develop to the staging environment
   - provider: script
-    script: bash script/ci-deploy.sh dev
+    script: bash script/ci-deploy.sh dev $CID
     on:
       branch: develop
   # deploy master to production
   - provider: script
-    script: bash scripts/ci-deploy.sh prod
+    script: bash scripts/ci-deploy.sh prod $CID
     on:
       branch: master
 after_deploy:
