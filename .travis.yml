@@ -1,6 +1,12 @@
 language: ruby
 rvm:
-- 2.2
+- 2.3
+
+sudo: required
+
+services:
+  - docker
+  
 script: ./script/cibuild.sh
 
 # branch whitelist
@@ -13,3 +19,10 @@ branches:
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+  
+after_success:
+  - CID=$(docker run -d -v ${TRAVIS_BUILD_DIR}:/data/ipfs ipfs/go-ipfs)
+  - docker stop $CID
+deploy:
+  - echo "deploy to ipfs here" 
+ 
