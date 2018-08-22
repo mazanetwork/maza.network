@@ -30,7 +30,7 @@ lsi: true # Lexical analysis (true) takes longer for higher quality
 
 # Exclude from Jekyll processing
 
-exclude: ["vendor", "README.md", "node_modules", "gulpfile.js", "package.json"]
+exclude: ["script", "nginx", "docker", "vendor", "README.md", "node_modules", "gulpfile.js", "package.json"]
 
 # Lists
 

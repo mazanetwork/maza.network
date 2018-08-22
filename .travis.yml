@@ -6,6 +6,7 @@ script: ./script/cibuild.sh
 # branch whitelist
 branches:
   only:
+  - develop
   - gh-pages     # test the gh-pages branch
   - /pages-(.*)/ # test every branch which starts with "pages-"
 
