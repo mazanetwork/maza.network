@@ -5,7 +5,6 @@ export IPFS_PATH=/data/ipfs
 # dev or prod
 STAGE=$1
 
-receiver () {
   
 
 ipfs key list 
