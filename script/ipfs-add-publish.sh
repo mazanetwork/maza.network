@@ -5,6 +5,8 @@ export IPFS_PATH=/data/ipfs
 # dev or prod
 STAGE=$1
 
+
+ipfs key list 
 case $STAGE in 
   dev) cd /data/staging/
        ipfs_hash=$(ipfs add -r -w -Q . )

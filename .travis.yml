@@ -1,44 +1,33 @@
 language: ruby
 rvm:
 - 2.3
-
 sudo: required
-
 services:
-  - docker
+- docker
 before_install:
-  - mkdir -pv ./ipfs/keystore
-  - openssl aes-256-cbc -K $encrypted_798d35b6d3fe_key -iv $encrypted_798d35b6d3fe_iv -in .travis/maza-web-dev.enc -out ./ipfs/keystore/maza-web-dev -d
-  - openssl aes-256-cbc -K $encrypted_798d35b6d3fe_key -iv $encrypted_798d35b6d3fe_iv -in .travis/maza-web-prod.enc -out ./ipfs/keystore/maza-web-prod -d
-
-
-  
-script: ./script/cibuild.sh
-
-# branch whitelist
+- openssl aes-256-cbc -K $encrypted_798d35b6d3fe_key -iv $encrypted_798d35b6d3fe_iv
+  -in .ipfs/maza-web_ipfs-keys.enc -out .ipfs/maza-web_ipfs-keys.tar -d
+- tar -xpvf .ipfs/maza-web_ipfs-keys.tar
+script: "./script/cibuild.sh"
 branches:
   only:
   - develop
-  - gh-pages     # test the gh-pages branch
-  - /pages-(.*)/ # test every branch which starts with "pages-"
-
+  - gh-pages
+  - "/pages-(.*)/"
 env:
   global:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
-  
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 after_success:
-  - CID=$(docker run -d -v $(TRAVIS_BUILD_DIR}:/data/staging -v ${TRAVIS_BUILD_DIR}/ipfs:/data/ipfs ipfs/go-ipfs)
- 
+- CID=$(docker run -d -v ${TRAVIS_BUILD_DIR}/script:/data/script -v $(TRAVIS_BUILD_DIR}:/data/staging -v ${TRAVIS_BUILD_DIR}/.ipfs:/data/ipfs
+  ipfs/go-ipfs)
 deploy:
-  # deploy develop to the staging environment
-  - provider: script
-    script: bash script/ci-deploy.sh dev $CID
-    on:
-      branch: develop
-  # deploy master to production
-  - provider: script
-    script: bash scripts/ci-deploy.sh prod $CID
-    on:
-      branch: master
+- provider: script
+  script: bash script/ci-deploy.sh dev $CID
+  on:
+    branch: develop
+- provider: script
+  script: bash scripts/ci-deploy.sh prod $CID
+  on:
+    branch: master
 after_deploy:
-  - docker stop $CID
+- docker stop $CID
