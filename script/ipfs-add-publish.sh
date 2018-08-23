@@ -5,6 +5,8 @@ export IPFS_PATH=/data/ipfs
 # dev or prod
 STAGE=$1
 
+receiver () {
+  
 
 ipfs key list 
 case $STAGE in 
@@ -14,9 +16,20 @@ case $STAGE in
          && echo "error adding to ipfs" \
 	 && exit 3
        # pubkey QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1
+       #check pubsub peers (wait for at least one) 
+       while true ; do
+          test -z $(ipfs pubsub peers QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1) || break
+          sleep 10
+       done
        ipfs name publish --key=maza-web-dev $ipfs_hash
-       ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "${ipfs_hash}"
-       ipfs pubsub sub mazawebdev 
+       # just do this a couple times for testing 
+          ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "build published"
+          sleep 10 
+          ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "build published"
+          sleep 10 
+          ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "build published"
+          sleep 10 
+
        ;;
  prod) cd /data/staging/ || exit 1
        ipfs_hash=$(ipfs add -r -w -Q . )
