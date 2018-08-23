@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+set -x
 
 export IPFS_PATH=/data/ipfs
 
@@ -18,6 +19,7 @@ case $STAGE in
        #check pubsub peers (wait for at least one) 
        while true ; do
           test -z $(ipfs pubsub peers QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1) || break
+	  echo "no peers on QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 yet"
           sleep 10
        done
        ipfs name publish --key=maza-web-dev $ipfs_hash
