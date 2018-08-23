@@ -18,7 +18,7 @@ env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 after_success:
-- CID=$(docker run -d -v ${TRAVIS_BUILD_DIR}/script:/data/script -v $(TRAVIS_BUILD_DIR}:/data/staging -v ${TRAVIS_BUILD_DIR}/.ipfs:/data/ipfs
+- export CID=$(docker run -d -v ${TRAVIS_BUILD_DIR}/script:/data/script -v $(TRAVIS_BUILD_DIR}:/data/staging -v ${TRAVIS_BUILD_DIR}/.ipfs:/data/ipfs
   ipfs/go-ipfs)
 deploy:
 - provider: script
