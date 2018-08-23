@@ -8,7 +8,7 @@ STAGE=$1
 
   
 
-ipfs key list 
+#ipfs key list 
 case $STAGE in 
   dev) cd /data/staging/ || exit 1
        ipfs_hash=$(ipfs add -r -w -Q . )
@@ -20,11 +20,11 @@ case $STAGE in
        while true ; do
           test -z $(ipfs pubsub peers QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1) || break
 	  echo "no peers on QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 yet"
-          sleep 10
+          sleep 3
        done
        ipfs name publish --key=maza-web-dev $ipfs_hash
        # just do this a couple times for testing 
-       for i in 1 2 3 4 5 6 7 8 9 10 ; do
+       for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
           
           ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "/ipfs/${ipfs_hash}"
           sleep 60 
