@@ -25,12 +25,19 @@ case $STAGE in
        ipfs name publish --key=maza-web-dev $ipfs_hash
        # just do this a couple times for testing 
           ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 ${ipfs_hash} mazaweb-dev"
-          sleep 10 
+          sleep 60 
           ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 ${ipfs_hash} mazaweb-dev"
-          sleep 10 
+          sleep 60 
           ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 ${ipfs_hash} mazaweb-dev"
-          sleep 10 
+          sleep 60 
           ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 ${ipfs_hash} mazaweb-dev"
+          sleep 60 
+          ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 ${ipfs_hash} mazaweb-dev"
+          sleep 60 
+          ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 ${ipfs_hash} mazaweb-dev"
+          sleep 60 
+          ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 ${ipfs_hash} mazaweb-dev"
+
 
        ;;
  prod) cd /data/staging/ || exit 1
