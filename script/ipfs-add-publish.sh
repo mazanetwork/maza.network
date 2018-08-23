@@ -15,6 +15,8 @@ case $STAGE in
 	 && exit 3
        # pubkey QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1
        ipfs name publish --key=maza-web-dev $ipfs_hash
+       ipfs pubsub pub QmRssaMi1LmkfZGnSJXR3EsVNTq6ZSmSTg2rWktFUMtoA1 "${ipfs_hash}"
+       ipfs pubsub sub mazawebdev 
        ;;
  prod) cd /data/staging/ || exit 1
        ipfs_hash=$(ipfs add -r -w -Q . )
