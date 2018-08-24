@@ -6,7 +6,7 @@ export IPFS_PATH=/data/ipfs
 # dev or prod
 STAGE=$1
 
-SUBDEV=12D3KooWJDhrnY4MC3p3tvimTyeDyFMLcxrg6KESdAVsaFWs4BiE
+SUBDEV=QmSyKNRRZiwvPcFAckhS9ja8722KVs2KhC86FiynGEY1qE
   
 
 #ipfs key list 
@@ -16,18 +16,17 @@ case $STAGE in
        test -z $ipfs_hash \
          && echo "error adding to ipfs" \
 	 && exit 3
-       # pubkey 12D3KooWJDhrnY4MC3p3tvimTyeDyFMLcxrg6KESdAVsaFWs4BiE
        #check pubsub peers (wait for at least one) 
        while true ; do
           test -z $(ipfs pubsub peers ${SUBDEV}) || break
 	  echo "no peers on ${SUBDEV} yet"
           sleep 3
        done
-       ipfs name publish --key=maza-web-dev $ipfs_hash
+       ipfs name publish --key=mazaweb-develop $ipfs_hash
        # just do this a couple times for testing 
        for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
           
-          ipfs pubsub pub ${SUBDEV} "/ipfs/${ipfs_hash}"
+          ipfs pubsub pub ${SUBDEV} "/ipfs/${ipfs_hash} "
           sleep 60 
        done
 

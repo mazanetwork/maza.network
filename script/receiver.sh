@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-SUBDEV=12D3KooWJDhrnY4MC3p3tvimTyeDyFMLcxrg6KESdAVsaFWs4BiE
+SUBDEV=QmSyKNRRZiwvPcFAckhS9ja8722KVs2KhC86FiynGEY1qE
 #SUBPROD
 export IPFS_PATH=/Users/guruvan/ipfs/a_new_hash
 test -d ${IPFS_PATH} || exit 1
