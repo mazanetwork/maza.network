@@ -10,7 +10,7 @@ STAGE=$1
 
 #ipfs key list 
 case $STAGE in 
-  dev) cd /data/staging/ || exit 1
+  dev) cd /data/staging/_site || exit 1
        ipfs_hash=$(ipfs add -r -Q . )
        test -z $ipfs_hash \
          && echo "error adding to ipfs" \
