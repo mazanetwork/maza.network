@@ -9,6 +9,7 @@ STAGE=$1
 SUBDEV=QmSyKNRRZiwvPcFAckhS9ja8722KVs2KhC86FiynGEY1qE
   
 
+ipfs pubsub sub ${SUBDEV} &
 #ipfs key list 
 case $STAGE in 
   dev) cd /data/staging/_site || exit 1
