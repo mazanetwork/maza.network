@@ -8,7 +8,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_798d35b6d3fe_key -iv $encrypted_798d35b6d3fe_iv
   -in .ipfs/maza-web_ipfs-keys.enc -out .ipfs/maza-web_ipfs-keys.tar -d
 - tar -xpvf .ipfs/maza-web_ipfs-keys.tar
-- docker run -d --name ipfs -v ${TRAVIS_BUILD_DIR}/script:/data/script -v ${TRAVIS_BUILD_DIR}:/data/staging -v ${TRAVIS_BUILD_DIR}/.ipfs:/data/ipfs ipfs/go-ipfs --enable-pubsub-experiment 
+- docker run -d --name ipfs -v ${TRAVIS_BUILD_DIR}/script:/data/script -v ${TRAVIS_BUILD_DIR}/_site:/data/staging -v ${TRAVIS_BUILD_DIR}/.ipfs:/data/ipfs ipfs/go-ipfs --enable-pubsub-experiment 
 script: "./script/cibuild.sh"
 branches:
   only:

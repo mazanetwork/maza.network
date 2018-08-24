@@ -41,9 +41,11 @@ done
        current_hash=${new_hash}
        echo "pinning the new hash ${current_hash}"
        # change this to update 
-       ipfs pin add -r ${build_hash} 
+       ipfs pin add --progress -r ${build_hash} 
      else 
        echo "new hash ${new_hash} and ${build_hash} don't match" 
+       # for now we'll pin it even if it didn't match, ipns resolution may be slow to propagate
+       ipfs pin add --progress -r ${build_hash} 
        sleep 60
      fi 
   fi
