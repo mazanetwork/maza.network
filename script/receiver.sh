@@ -24,10 +24,11 @@ while true ; do
   test -z ${build_hash} || break
 done
   cp  ~/.mazaipfs/receiver-${SUBDEV}.out ~/.mazaipfs/debug.out
-  > ~/.mazaipfs/receiver-${SUBDEV}.out
+  rm ~/.mazaipfs/receiver-${SUBDEV}.out
+  ipfs pubsub sub ${SUBDEV} > ~/.mazaipfs/receiver-${SUBDEV}.out  &
   echo "website update announcement received with hash: ${build_hash}"
   echo "- checking ipns resolution"
-  if [ "X${current_hash}" != "X${build_hash}" ] ;then
+  if [ "X${current_hash} " != "X${build_hash}" ] ;then
      echo "new pubsub build announcement received"
      echo "checking ipns link and announcement match"
      while true ; do 
